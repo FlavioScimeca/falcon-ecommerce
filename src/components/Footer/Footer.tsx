@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import footerClassNames from './FooterClassName';
+import footerClassNames from './footerClassName';
 
 const Footer = () => {
   const {
