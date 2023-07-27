@@ -4,4 +4,5 @@ export interface Category {
   slug: { current: string };
   image: string;
   subtitle: string;
+  _updatedAt: string;
 }

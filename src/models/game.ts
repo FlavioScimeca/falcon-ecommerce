@@ -12,6 +12,7 @@ export interface Game {
   slug: { current: string };
   quantity: number;
   description: string;
+  _updatedAt: string;
 }
 
 export type GameSubset = Pick<

@@ -9,7 +9,8 @@ export const getCategories = async (): Promise<Category[]> => {
     name,
     slug {current},
     image,
-    subtitle
+    subtitle,
+    _updatedAt
 }`;
 
   const categories: Category[] = await sanityClient.fetch({ query });
@@ -33,7 +34,8 @@ export const getGames = async (): Promise<Game[]> => {
       },
       slug,
       quantity,
-      description
+      description,
+      _updatedAt
   }`;
 
   const games: Game[] = await sanityClient.fetch({ query });
@@ -117,6 +119,21 @@ export const getGame = async (slug: string): Promise<Game> => {
   const game: Game = await sanityClient.fetch({ query });
 
   return game;
+};
+
+export const getGameSlug = async (
+  slug: string
+): Promise<{ _id: string; slug: string }> => {
+  const query = `*[_type == "game" && slug.current == "${slug}" ] [0] {
+      _id,
+      slug,
+  }`;
+
+  const gameSlug: { _id: string; slug: string } = await sanityClient.fetch({
+    query,
+  });
+
+  return gameSlug;
 };
 
 export const updateGameQuantity = async (games: GameSubset[]) => {

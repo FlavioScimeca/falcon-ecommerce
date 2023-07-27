@@ -2,11 +2,38 @@ import GameCard from '@/components/GameCard/GameCard';
 import NewsLetter from '@/components/NewsLetter/NewsLetter';
 import { getCategory, getCategoryGames } from '@/libs/apis';
 import { Game } from '@/models/game';
-import { NextPage } from 'next';
+import { Metadata } from 'next';
 import React from 'react';
 
 interface GameCategoryProps {
   params: { slug: string };
+}
+
+export async function generateMetadata({
+  params: { slug },
+}: GameCategoryProps): Promise<Metadata> {
+  const category = await getCategory(slug);
+
+  if (!category) {
+    return {
+      title: 'Not Found',
+      description: 'Page Not Found',
+    };
+  }
+
+  return {
+    title: {
+      absolute: category.name,
+    },
+    description: category.subtitle,
+    category: category.name,
+    alternates: {
+      canonical: `category/${category.slug.current}`,
+      languages: {
+        'it-IT': `it-IT/category/${category.slug.current}`,
+      },
+    },
+  };
 }
 
 const GameCategory = async ({ params: { slug } }: GameCategoryProps) => {

@@ -20,9 +20,9 @@ module.exports = {
       },
       colors: {
         primary: {
-          light: '#FCC182',
-          DEFAULT: '#FA9021',
-          dark: '#AF5B04',
+          light: '#b298dc',
+          DEFAULT: '#8758c4',
+          dark: '#6028a8',
         },
       },
     },

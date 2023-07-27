@@ -21,7 +21,11 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'Falcon Ecommerce',
+  metadataBase: new URL('https://falcon-ecommerce.vercel.app/'),
+  title: {
+    default: 'Falcon Shop',
+    template: '%s | Falcon Shop',
+  },
   description: 'This is a shop where we sell furniture',
 };
 

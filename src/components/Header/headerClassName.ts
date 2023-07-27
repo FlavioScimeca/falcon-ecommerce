@@ -15,7 +15,7 @@ const headerClassNames = {
   signinBtn:
     'bg-blue-500 flex hover:bg-blue-700 text-white font-bold py-2 px-4 rounded',
   logoutBtn:
-    'bg-blue-500 ml-4 flex hover:bg-blue-700 text-white font-bold py-2 px-4 rounded',
+    'bg-red-600 ml-4 flex hover:bg-red-700 text-white font-bold py-2 px-4 rounded',
 };
 
 export default headerClassNames;
