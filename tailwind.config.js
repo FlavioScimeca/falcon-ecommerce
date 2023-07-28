@@ -15,8 +15,7 @@ module.exports = {
         montserrat: ['var(--font-montserrat)', ...fontFamily.sans],
       },
       backgroundImage: {
-        'primary-gradient':
-          'linear-gradient(180.96deg, #000000 0.82%, #4A2800 129.1%)',
+        'primary-gradient': 'linear-gradient(180.96deg, #C3ACD0, #5D3891)',
       },
       colors: {
         primary: {
