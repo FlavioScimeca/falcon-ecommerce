@@ -18,34 +18,37 @@ export async function POST(req: Request, res: Response) {
 
   try {
     const session = await stripe.checkout.sessions.create({
-      line_items: updatedItems.map((item) => ({
-        quantity: item.quantity,
-        adjustable_quantity: {
-          enabled: true,
-          maximum: item.maxQuantity,
-          minimum: 1,
-        },
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: item.name,
-            images: [item.images[0].url],
+      line_items: updatedItems.map((item) => {
+        return {
+          quantity: item.quantity,
+          adjustable_quantity: {
+            enabled: true,
+            maximum: item.maxQuantity,
+            minimum: 1,
           },
-          unit_amount: parseInt((item.price * 100).toString()),
-        },
-      })),
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: item.name,
+              images: [item.images[0].url],
+              description: item.description,
+              metadata: {
+                item_id: item._id,
+              },
+            },
+            unit_amount: parseInt((item.price * 100).toString()),
+          },
+        };
+      }),
       payment_method_types: ['card'],
+      //metadata
       billing_address_collection: 'required',
       mode: 'payment',
       success_url: `${origin}/?success=true`,
       phone_number_collection: { enabled: true },
     });
-
-    // const result = await updateGameQuantity(updatedItems)
-    // console.log(result)
-
-    await updateGameQuantity(updatedItems);
-    await createOrder(updatedItems, userEmail);
+    // await updateGameQuantity(updatedItems);
+    // await createOrder(updatedItems, userEmail);
 
     return NextResponse.json(session, {
       status: 200,
@@ -98,6 +101,7 @@ async function fetchAndCalculateItemPricesAndQuantity(cartItems: Game[]) {
         quantity: cartItem?.quantity as number,
         maxQuantity: item.quantity,
         price: item.price,
+        description: item.description,
       };
     });
 

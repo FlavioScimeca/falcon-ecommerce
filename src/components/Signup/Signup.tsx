@@ -1,6 +1,6 @@
 'use client';
 
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { FC, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
@@ -32,9 +32,9 @@ const Signup: FC<SignupProps> = (props) => {
 
       if (response.data)
         toast.success(`${response.statusText}. Please sign in`);
-    } catch (error) {
+    } catch (error: any) {
       setIsFormSubmitting(false);
-      toast.error('Something went wrong');
+      toast.error(error.response.data);
       console.log('Error', error);
     }
 

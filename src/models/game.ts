@@ -17,5 +17,5 @@ export interface Game {
 
 export type GameSubset = Pick<
   Game,
-  '_id' | 'price' | 'quantity' | 'images' | 'name'
+  '_id' | 'price' | 'quantity' | 'images' | 'name' | 'description'
 > & { maxQuantity: number };

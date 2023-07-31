@@ -136,6 +136,39 @@ export const getGameSlug = async (
   return gameSlug;
 };
 
+export const getGamesByIds = async (
+  games_slugs_quantities: { item_id: string; quantity: number }[]
+) => {
+  const games: GameSubset[] = [];
+
+  const gamesPromises = games_slugs_quantities.map(
+    async ({ item_id, quantity }) => {
+      const query = `*[_type == "game" && _id == "${item_id}" ] [0] {
+      _id,
+      name, 
+      price,
+      images,
+      quantity,
+      description,
+  }`;
+
+      const gameFound: GameSubset = await sanityClient.fetch({
+        query,
+      });
+      const updatedGame: GameSubset = {
+        ...gameFound,
+        quantity: quantity,
+        maxQuantity: gameFound.quantity,
+      };
+      games.push(updatedGame);
+    }
+  );
+
+  await Promise.all(gamesPromises);
+
+  return games;
+};
+
 export const updateGameQuantity = async (games: GameSubset[]) => {
   const mutation = {
     mutations: games.map(({ _id, maxQuantity, quantity }: GameSubset) => {
@@ -166,6 +199,7 @@ export const createOrder = async (games: GameSubset[], userEmail: string) => {
         create: {
           _type: 'order',
           items: games.map((game, idx) => ({
+            _key: `productId-${game._id}`,
             game: {
               _key: idx,
               _type: 'reference',
