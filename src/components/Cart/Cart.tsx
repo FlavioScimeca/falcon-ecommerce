@@ -78,7 +78,7 @@ const Cart: FC = () => {
               <Image
                 width={100}
                 height={100}
-                src={item.images[0].url}
+                src={item.images[0].imageUrl}
                 alt={item.name}
                 className={cartItemClassNames.image}
               />

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { FC, useState, useEffect } from 'react';
 
 interface CarouselSliderProps {
-  images: { _key: string; url: string }[];
+  images: { _key: string; imageUrl: string; alt: string }[];
   interval?: number;
 }
 
@@ -47,10 +47,10 @@ const CarouselSlider: FC<CarouselSliderProps> = (props) => {
       {images.map((image, index) => (
         <Image
           key={image._key}
-          src={image.url}
+          src={image.imageUrl}
           width={700}
           height={700}
-          alt={`Slide ${index + 1}`}
+          alt={`Slide ${index + 1} - ${image.alt}`}
           className={`w-full h-full object-contain ${
             index !== currentImageIndex && 'hidden'
           }`}
@@ -70,7 +70,7 @@ const CarouselSlider: FC<CarouselSliderProps> = (props) => {
 export default CarouselSlider;
 
 const classNames = {
-  container: 'relative h-[70vh]',
+  container: 'relative h-[70vh] top-10',
   previousButton:
     'absolute flex h-14 w-14 top-1/2 left-2 transform -translate-y-1/2 px-4 py-2 bg-primary text-white rounded-full',
   nextButton:

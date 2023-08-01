@@ -1,4 +1,3 @@
-import CarouselSlider from '@/components/CarouselSlider/CarouselSlider';
 import GameDetailsClient from '@/components/GameDetails/GameDetailsClient';
 import GameDetailsServer from '@/components/GameDetails/GameDetailsServer';
 import { getGame } from '@/libs/apis';
@@ -34,10 +33,12 @@ const GametemPage = async (props: { params: { slug: string } }) => {
     params: { slug },
   } = props;
 
+  const game = await getGame(slug);
+
   return (
     <>
-      <GameDetailsClient slug={slug}>
-        <GameDetailsServer slug={slug} />
+      <GameDetailsClient game={game}>
+        <GameDetailsServer game={game} />
       </GameDetailsClient>
     </>
   );

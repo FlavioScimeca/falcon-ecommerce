@@ -7,6 +7,7 @@ import Providers from '@/redux/Providers';
 import Cart from '@/components/Cart/Cart';
 import Toast from '@/components/Toast/Toast';
 import NextAuthProvider from '@/components/NextAuthProvider.tsx/NextAuthProvider';
+import NextProgress from '@/components/NextProgress/NextProgress';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} ${montserrat.variable}`}>
       <body suppressHydrationWarning={true}>
         <Toast />
+        <NextProgress />
         <Providers>
           <NextAuthProvider>
             <Cart />

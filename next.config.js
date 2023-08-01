@@ -6,6 +6,7 @@ const nextConfig = {
       'unsplash.com',
       'cdn.akamai.steamstatic.com',
       'upload.wikimedia.org',
+      'cdn.sanity.io',
     ],
   },
 };

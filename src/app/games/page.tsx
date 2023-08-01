@@ -22,7 +22,7 @@ const Games = async () => {
             <GameCard
               key={game._id}
               gameName={game.name}
-              imageURL={game.images[0].url}
+              imageURL={game.images[0].imageUrl}
               price={game.price}
               slug={game.slug.current}
             />

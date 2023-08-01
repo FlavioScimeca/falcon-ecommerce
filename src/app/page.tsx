@@ -2,13 +2,24 @@ import GameCard from '@/components/GameCard/GameCard';
 import GameCategoryCard from '@/components/GameCategoryClassName/GameCategoryCard';
 import HeroSection from '@/components/HeroSection/HeroSection';
 import NewsLetter from '@/components/NewsLetter/NewsLetter';
-import { getCategories, getGames, getRecentGames } from '@/libs/apis';
+import {
+  getCategories,
+  getCategory,
+  getGames,
+  getRecentGames,
+} from '@/libs/apis';
+import { urlFor } from '@/libs/urlFor';
+import { Category } from '@/models/category';
+import { Game } from '@/models/game';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Home() {
-  const categories = await getCategories();
-  const games = await getGames();
+  // const categories: Category[] = await getCategories();
+  // const games: Game[] = await getGames();
+
+  const [categories, games] = await Promise.all([getCategories(), getGames()]);
+
   const isTrendingGames = games?.filter((game) => game.isTrending);
   const isFeaturedGame = games?.find((game) => game.isFeatured);
   const recentGames = await getRecentGames();
@@ -30,7 +41,7 @@ export default async function Home() {
           {isTrendingGames.map((game) => (
             <GameCard
               key={game._id}
-              imageURL={game.images[0].url}
+              imageURL={game.images[0].imageUrl}
               price={game.price}
               slug={game.slug.current}
               gameName={game.name}
@@ -57,8 +68,10 @@ export default async function Home() {
               </p>
               <Link href={`/games/${isFeaturedGame.slug.current}`}>
                 <Image
-                  src={isFeaturedGame.images[0].url}
-                  alt={isFeaturedGame.name}
+                  src={urlFor(isFeaturedGame.images[0].imageUrl)
+                    .url()
+                    .toString()}
+                  alt={isFeaturedGame.images[0].alt}
                   width={500}
                   height={500}
                   className={featuredClassNames.gameImage}
@@ -88,7 +101,6 @@ export default async function Home() {
             {categories.map((category) => (
               <GameCategoryCard
                 key={category._id}
-                categoryImage={category.image}
                 categoryName={category.name}
                 slug={category.slug.current}
               />
@@ -110,7 +122,7 @@ export default async function Home() {
               gameName={game.name}
               price={game.price}
               slug={game.slug.current}
-              imageURL={game.images[0].url}
+              imageURL={game.images[0].imageUrl}
             />
           ))}
         </div>
@@ -133,14 +145,14 @@ const sectionClassNames = {
     'mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary hover:bg-primary-dark',
   latestButton:
     'mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary-gradient border-2 border-primary-dark',
-  featured: 'pb-24 px-6 sm:px-12 md:px-20 lg:px-36 text-white',
-  featuredContent: 'mx-auto max-w-screen-xl',
+  featured: 'pb-24 px-6 sm:px-12 md:px-20 lg:px-36 text-white ',
+  featuredContent: 'mx-auto',
 };
 
 const featuredClassNames = {
   gameName: 'font-bold text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-8',
   gameDetails: 'max-w-screen-md text-sm mb-8 md:mb-12',
-  gameImage: 'h-72 md:h-96 lg:h-112 w-full object-cover rounded-lg',
+  gameImage: 'rounded-lg mx-auto',
 };
 
 const styles = {

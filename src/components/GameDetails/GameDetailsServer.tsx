@@ -1,13 +1,12 @@
 import { getGame } from '@/libs/apis';
+import { Game } from '@/models/game';
 
-const GameDetailsServer = async ({ slug }: { slug: string }) => {
-  const gameDetails = await getGame(slug);
-
+const GameDetailsServer = async ({ game }: { game: Game }) => {
   return (
     <>
-      <h2 className={classNames.name}>{gameDetails.name}</h2>
-      <p className={classNames.price}>{gameDetails.price} $</p>
-      <h2 className={classNames.description}>{gameDetails.description}</h2>
+      <h2 className={classNames.name}>{game.name}</h2>
+      <p className={classNames.price}>{game.price} $</p>
+      <h2 className={classNames.description}>{game.description}</h2>
     </>
   );
 };

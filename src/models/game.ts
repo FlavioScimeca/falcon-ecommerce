@@ -4,7 +4,8 @@ export interface Game {
   price: number;
   images: Array<{
     _key: string;
-    url: string;
+    alt: string;
+    imageUrl: string;
   }>;
   isFeatured: boolean;
   isTrending: boolean;

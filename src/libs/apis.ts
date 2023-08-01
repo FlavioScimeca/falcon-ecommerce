@@ -8,7 +8,6 @@ export const getCategories = async (): Promise<Category[]> => {
     _id,
     name,
     slug {current},
-    image,
     subtitle,
     _updatedAt
 }`;
@@ -23,7 +22,11 @@ export const getGames = async (): Promise<Game[]> => {
     _id,
       name, 
       price,
-      images,
+      images[]{
+        _key,
+        alt,
+      "imageUrl": image.asset->url,
+      },
       isFeatured,
       isTrending,
       'category' : *[_id == ^.category._ref] [0] {
@@ -48,7 +51,11 @@ export const getCategoryGames = async (slug: string): Promise<Game[]> => {
     _id,
     name,
     price,
-    images,
+    images[]{
+      _key,
+      alt,
+    "imageUrl": image.asset->url,
+    },
     isFeatured,
     isTrending,
     slug ,
@@ -78,7 +85,11 @@ export const getRecentGames = async (): Promise<Game[]> => {
     _id,
       name, 
       price,
-      images,
+      images[]{
+        _key,
+        alt,
+      "imageUrl": image.asset->url,
+      },
       isFeatured,
       isTrending,
       'category' : *[_id == ^.category._ref] [0] {
@@ -102,7 +113,11 @@ export const getGame = async (slug: string): Promise<Game> => {
       _id,
       name, 
       price,
-      images,
+      images[]{
+        _key,
+        alt,
+      "imageUrl": image.asset->url,
+      },
       isFeatured,
       isTrending,
       'category' : *[_id == ^.category._ref] [0] {
@@ -147,7 +162,11 @@ export const getGamesByIds = async (
       _id,
       name, 
       price,
-      images,
+      images[]{
+        _key,
+        alt,
+      "imageUrl": image.asset->url,
+      },
       quantity,
       description,
   }`;

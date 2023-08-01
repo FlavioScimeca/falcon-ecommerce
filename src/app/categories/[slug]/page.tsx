@@ -68,7 +68,7 @@ const GameCategory = async ({ params: { slug } }: GameCategoryProps) => {
               gameName={name}
               slug={slug.current}
               price={price}
-              imageURL={images[0].url}
+              imageURL={images[0].imageUrl}
             />
           ))}
         </div>

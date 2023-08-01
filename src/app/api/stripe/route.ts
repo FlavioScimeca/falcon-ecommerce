@@ -30,7 +30,7 @@ export async function POST(req: Request, res: Response) {
             currency: 'usd',
             product_data: {
               name: item.name,
-              images: [item.images[0].url],
+              images: [item.images[0].imageUrl],
               description: item.description,
               metadata: {
                 item_id: item._id,
@@ -66,7 +66,11 @@ async function fetchAndCalculateItemPricesAndQuantity(cartItems: Game[]) {
         name,
         price,
         quantity,
-        images
+        images[]{
+          _key,
+          alt,
+        "imageUrl": image.asset->url,
+        },
     }`;
 
   try {
