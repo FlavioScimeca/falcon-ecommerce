@@ -56,19 +56,16 @@ const Header = () => {
     }
   };
 
-  /* change color on scroll */
-  const changeNavbarColor = () => {
-    if (typeof window !== 'undefined') {
+  useEffect(() => {
+    function changeNavbarColor() {
       if (window.scrollY >= 90) {
         setColorchange(true);
       } else {
         setColorchange(false);
       }
     }
-  };
-  window.addEventListener('scroll', changeNavbarColor);
-
-  useEffect(() => {}, [session?.user]);
+    window.addEventListener('scroll', changeNavbarColor);
+  }, [session?.user]);
 
   const buttonsCTA = (
     <>
