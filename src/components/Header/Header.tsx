@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import headerClassNames from './headerClassName';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
+import { BsGoogle } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHook';
 import { toggleCart } from '@/redux/features/cartSlice';
 import useCartTotals from '@/hooks/useCartTotals';
@@ -30,6 +30,7 @@ const Header = () => {
   } = headerClassNames;
 
   //-------
+  const [colorChange, setColorchange] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -55,6 +56,16 @@ const Header = () => {
     }
   };
 
+  /* change color on scroll */
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 90) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
+
   useEffect(() => {}, [session?.user]);
 
   const buttonsCTA = (
@@ -71,18 +82,18 @@ const Header = () => {
       )}
       {!session?.user && (
         <>
-          <button onClick={toggleForm} className={`${signupBtn} ml-1`}>
+          <button onClick={toggleForm} className={`${signupBtn}`}>
             Sign Up
           </button>
           <button onClick={signInHandler} className={signinBtn}>
             SignIn
-            <FcGoogle
+            <BsGoogle
               style={{
+                color: 'black',
                 fontSize: '25px',
                 cursor: 'pointer',
-                marginLeft: '12px',
+                marginLeft: '8px',
               }}
-              className={link}
             />
           </button>
         </>
@@ -93,14 +104,18 @@ const Header = () => {
   return (
     <>
       <Signup isSignupFormOpen={isSignupFormOpen} toggleForm={toggleForm} />
-      <header className={header}>
+      <header
+        className={`${header} ${
+          colorChange ? 'bg-white' : ''
+        } transition-all duration-300`}
+      >
         <div className={container}>
           <Link className={logoContainer} href="/">
             Logo
           </Link>
 
-          <nav className={nav}>
-            <ul className={ul}>
+          <nav>
+            <ul className="h-16 flex">
               <li>
                 <button onClick={() => dispatch(toggleCart())} className={link}>
                   <span>
@@ -111,9 +126,7 @@ const Header = () => {
                 </button>
               </li>
 
-              <li className="flex items-center justify-center h-7">
-                {buttonsCTA}
-              </li>
+              <li className="flex justify-center h-full">{buttonsCTA}</li>
             </ul>
           </nav>
         </div>
