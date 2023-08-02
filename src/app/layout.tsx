@@ -27,7 +27,8 @@ export const metadata: Metadata = {
     default: 'Falcon Shop',
     template: '%s | Falcon Shop',
   },
-  description: 'This is a shop where we sell furniture',
+  description:
+    'Falcon shop is a modern ecommerce where you can find and buy the most recent and ranked videogames on the globe',
 };
 
 export default function RootLayout({

@@ -58,10 +58,12 @@ const Header = () => {
 
   /* change color on scroll */
   const changeNavbarColor = () => {
-    if (window.scrollY >= 90) {
-      setColorchange(true);
-    } else {
-      setColorchange(false);
+    if (typeof window !== 'undefined') {
+      if (window.scrollY >= 90) {
+        setColorchange(true);
+      } else {
+        setColorchange(false);
+      }
     }
   };
   window.addEventListener('scroll', changeNavbarColor);
