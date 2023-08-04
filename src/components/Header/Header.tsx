@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import headerClassNames from './headerClassName';
+import { useState } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsGoogle } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHook';
@@ -12,26 +11,6 @@ import Signup from '../Signup/Signup';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Header = () => {
-  const {
-    header,
-    container,
-    logoContainer,
-    logo,
-    nav,
-    ul,
-    li,
-    link,
-    cart,
-    contactUs,
-    orders,
-    signupBtn,
-    signinBtn,
-    logoutBtn,
-  } = headerClassNames;
-
-  //-------
-  const [colorChange, setColorchange] = useState(false);
-
   const dispatch = useAppDispatch();
 
   const { totalQuantity } = useCartTotals();
@@ -56,42 +35,37 @@ const Header = () => {
     }
   };
 
-  useEffect(() => {
-    function changeNavbarColor() {
-      if (window.scrollY >= 90) {
-        setColorchange(true);
-      } else {
-        setColorchange(false);
-      }
-    }
-    window.addEventListener('scroll', changeNavbarColor);
-  }, [session?.user]);
-
   const buttonsCTA = (
     <>
       {session?.user && (
         <>
-          <Link href="/orders" className={orders}>
+          <Link href="/orders" className="hover:bg-zinc-100 header-btn">
             Orders
           </Link>
-          <button onClick={() => signOut()} className={logoutBtn}>
+          <button
+            onClick={() => signOut()}
+            className="bg-red-600 hover:bg-red-500 header-btn"
+          >
             Logout
           </button>
         </>
       )}
       {!session?.user && (
         <>
-          <button onClick={toggleForm} className={`${signupBtn}`}>
+          <button onClick={toggleForm} className="hover:bg-zinc-100 header-btn">
             Sign Up
           </button>
-          <button onClick={signInHandler} className={signinBtn}>
+          <button
+            onClick={signInHandler}
+            className="hover:bg-zinc-100 header-btn"
+          >
             SignIn
             <BsGoogle
               style={{
                 color: 'black',
                 fontSize: '25px',
                 cursor: 'pointer',
-                marginLeft: '8px',
+                marginLeft: '5px',
               }}
             />
           </button>
@@ -103,31 +77,26 @@ const Header = () => {
   return (
     <>
       <Signup isSignupFormOpen={isSignupFormOpen} toggleForm={toggleForm} />
-      <header
-        className={`${header} ${
-          colorChange ? 'bg-white' : ''
-        } transition-all duration-300`}
-      >
-        <div className={container}>
-          <Link className={logoContainer} href="/">
-            Logo
-          </Link>
 
-          <nav>
-            <ul className="h-16 flex">
-              <li>
-                <button onClick={() => dispatch(toggleCart())} className={link}>
-                  <span>
-                    Cart
-                    <AiOutlineShoppingCart className="inline-block text-3xl" />
-                  </span>
-                  <div className={cart}> {totalQuantity} </div>
-                </button>
-              </li>
-
-              <li className="flex justify-center h-full">{buttonsCTA}</li>
-            </ul>
-          </nav>
+      <header className={`border-b-2 border-black flex justify-between h-16`}>
+        <Link className="header-btn" href="/">
+          Logo
+        </Link>
+        <div className="flex">
+          <button
+            onClick={() => dispatch(toggleCart())}
+            className="hover:bg-zinc-100 relative header-btn"
+          >
+            <span>
+              Cart
+              <AiOutlineShoppingCart className="inline-block text-3xl" />
+            </span>
+            <div className="absolute inline-flex items-center justify-center w-5 md:w-6 h-5 md:h-6 font-bold border-2 border-black rounded-full top-2 -right-0 md:right-2 text-xs md:text-sm">
+              {' '}
+              {totalQuantity}{' '}
+            </div>
+          </button>
+          {buttonsCTA}
         </div>
       </header>
     </>

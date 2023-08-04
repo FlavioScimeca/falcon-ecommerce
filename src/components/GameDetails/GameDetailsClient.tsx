@@ -1,19 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 
-import { getGame } from '@/libs/apis';
-import CarouselSlider from '@/components/CarouselSlider/CarouselSlider';
 import { Game } from '@/models/game';
 import { useAppDispatch } from '@/hooks/storeHook';
 import { addItemToCart } from '@/redux/features/cartSlice';
+import Carousel from '../Carousel/Carousel';
 
-const GameDetailsClient = (props: {
-  game: Game;
-  children: React.ReactNode;
-}) => {
-  const { game, children } = props;
+const GameDetailsClient = (props: { game: Game }) => {
+  const { game } = props;
 
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
@@ -43,15 +39,20 @@ const GameDetailsClient = (props: {
 
   return (
     <div>
-      {game && <CarouselSlider images={game.images} />}
+      <Carousel images={game.images} />
 
-      <div className={classNames.container}>
-        <div className={classNames.productInfo}>
-          <div className={classNames.cartContainer}>
+      <div className="flex justify-around items-center border-black border-t">
+        <div>
+          <h2 className="text-xl md:text-3xl py-3 font-bold">{game.name}</h2>
+          <p className={classNames.price}>{game.price} $</p>
+        </div>
+
+        <div className="flex flex-col justify-around mt-10">
+          <div className="flex">
             <button
               onClick={handleDecrease}
-              className={`${classNames.button} ${
-                quantity === 0 && classNames.disabledButton
+              className={`px-4 py-2 rounded-s-full border border-black font-extrabold ${
+                quantity === 0 && 'bg-gray-300 cursor-not-allowed'
               }`}
               disabled={quantity === 0}
             >
@@ -59,36 +60,42 @@ const GameDetailsClient = (props: {
             </button>
             <input
               type="text"
-              className={classNames.quantityInput}
+              className="border-y w-32 text-center  border-black"
               value={quantity}
               readOnly
             />
             {game && (
               <button
                 onClick={handleIncrease}
-                className={`${classNames.button} ${
-                  quantity === game.quantity && classNames.disabledButton
+                className={`px-4 py-2 rounded-r-full border border-black font-extrabold ${
+                  quantity === game.quantity && 'bg-gray-300 cursor-not-allowed'
                 }`}
                 disabled={quantity === game.quantity}
               >
                 +
               </button>
             )}
-            <div className={classNames.cartPrice}>$ {price}</div>
+          </div>
+
+          <div className="flex justify-center items-center space-x-5 mt-5">
+            <div className="text-xl text-primary-light font-semibold">
+              $ {price}
+            </div>
             <button
               onClick={handleAddToCart}
-              className={`${classNames.button} ${
-                quantity === 0 && classNames.disabledButton
+              className={`p-4 rounded-full bg-black text-white hover:bg-emerald-600 transition-all ${
+                quantity === 0 && 'bg-gray-300 cursor-not-allowed'
               }`}
               disabled={quantity === 0}
             >
               <FaShoppingCart />
             </button>
           </div>
-
-          {/* Render Game Details Server */}
-          {children}
         </div>
+      </div>
+
+      <div className="lg:w-[calc(100dvw-29rem)] text-center lg:ms-28 pt-5">
+        <h2 className={classNames.description}>{game.description}</h2>
       </div>
     </div>
   );
@@ -97,15 +104,13 @@ const GameDetailsClient = (props: {
 export default GameDetailsClient;
 
 const classNames = {
-  container:
-    'py-14 max-w-xl md:max-w-3xl mx-auto flex flex-col items-center justify-center',
   carousel: 'relative w-full h-64 mb-4',
   previousButton:
     'absolute top-1/2 left-2 transform -translate-y-1/2 px-4 py-2 bg-gray-500 text-white rounded-l',
   nextButton:
     'absolute top-1/2 right-2 transform -translate-y-1/2 px-4 py-2 bg-gray-500 text-white rounded-r',
-  productInfo: 'text-center',
-  description: 'text-lg text-gray-300 mb-2',
+
+  description: 'text-lg mb-2',
   name: 'text-4xl pt-5 text-gray-300 font-bold mb-2',
   price: 'text-2xl text-primary font-bold',
   cartPrice: 'text-xl text-primary-light',

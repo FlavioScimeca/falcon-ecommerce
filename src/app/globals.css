@@ -5,4 +5,11 @@
 html {
   font-family: var(--font-montserrat), var(--font-poppins), sans-serif;
   scroll-behavior: smooth !important;
+  box-sizing: border-box;
+}
+
+@layer components {
+  .header-btn {
+    @apply w-20 md:w-28 font-bold border-black text-xs md:text-sm flex items-center justify-center border-l-[1px];
+  }
 }

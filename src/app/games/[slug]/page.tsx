@@ -1,5 +1,4 @@
 import GameDetailsClient from '@/components/GameDetails/GameDetailsClient';
-import GameDetailsServer from '@/components/GameDetails/GameDetailsServer';
 import { getGame } from '@/libs/apis';
 import { Metadata } from 'next';
 
@@ -37,9 +36,7 @@ const GametemPage = async (props: { params: { slug: string } }) => {
 
   return (
     <>
-      <GameDetailsClient game={game}>
-        <GameDetailsServer game={game} />
-      </GameDetailsClient>
+      <GameDetailsClient game={game} />
     </>
   );
 };

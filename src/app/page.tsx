@@ -28,7 +28,7 @@ export default async function Home() {
   // console.log({ games: games });
   return (
     <>
-      <HeroSection showLink />
+      <HeroSection />
 
       <section className={sectionClassNames.section}>
         <div className={sectionClassNames.trending}>
@@ -52,7 +52,7 @@ export default async function Home() {
 
       {isFeaturedGame && (
         <>
-          <h3 className="font-semibold text-2xl text-center text-primary-dark my-5">
+          <h3 className="font-semibold text-2xl text-center my-5">
             Featured Game
           </h3>
 
@@ -82,13 +82,7 @@ export default async function Home() {
         </>
       )}
 
-      <section
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGxheSUyMHN0YXRpb258ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-        }}
-        className={styles.categorySection}
-      >
+      <section className={styles.categorySection}>
         <div className={styles.categoryContent}>
           <h2 className={styles.categoryHeading}>Categories</h2>
           <p className={styles.categorySubHeading}>
@@ -138,14 +132,14 @@ export default async function Home() {
 }
 
 const sectionClassNames = {
-  section: 'px-6 sm:px-12 md:px-20 lg:px-36 mx-auto py-8 text-white',
+  section: 'sm:px-12 md:px-20 lg:px-36 mx-auto py-8',
   trending: 'flex flex-col sm:flex-row items-center justify-between mb-8',
   trendingTitle: 'font-bold text-3xl sm:mr-4',
   trendingButton:
     'mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary hover:bg-primary-dark',
   latestButton:
     'mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary-gradient border-2 border-primary-dark',
-  featured: 'pb-24 px-6 sm:px-12 md:px-20 lg:px-36 text-white ',
+  featured: 'pb-24 px-6 sm:px-12 md:px-20 lg:px-36  ',
   featuredContent: 'mx-auto',
 };
 
@@ -162,11 +156,11 @@ const styles = {
   categoryHeading:
     'text-center max-w-md sm:max-w-lg md:max-w-2xl mx-auto text-primary font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 leading-[130%,187%,130%,130%]',
   categorySubHeading:
-    'text-center bg-primary-gradient px-8 rounded-3xl py-5 max-w-md sm:max-w-lg md:max-w-2xl mx-auto text-white text-base sm:text-lg md:text-xl lg:text-2xl mb-8',
+    'text-center bg-primary-gradient px-8 rounded-3xl py-5 max-w-md sm:max-w-lg md:max-w-2xl mx-auto text-base sm:text-lg md:text-xl lg:text-2xl mb-8',
 };
 
 const recentGamesClasses = {
-  section: 'py-16 lg:py-36 px-4 lg:px-36 text-white text-center',
+  section: 'py-16 lg:py-36 px-4 lg:px-36 text-center',
   heading: 'text-3xl lg:text-4xl font-bold mb-3',
   subHeading: 'text-gray-400 max-w-xl mx-auto lg:text-lg',
 };

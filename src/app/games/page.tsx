@@ -9,8 +9,6 @@ const Games = async () => {
 
   return (
     <div>
-      <HeroSection />
-
       <section className={classNames.section}>
         <h2 className={classNames.heading}> Games</h2>
         <p className={classNames.subHeading}>
@@ -36,7 +34,7 @@ const Games = async () => {
 export default Games;
 
 const classNames = {
-  section: 'py-16 lg:pb-36 px-4 lg:px-36 text-white text-center',
+  section: 'py-16 lg:pb-36 px-4 lg:px-36 text-center',
   heading: 'text-3xl lg:text-4xl font-bold mb-3',
   subHeading: 'text-gray-400 max-w-xl mx-auto lg:text-lg',
 };

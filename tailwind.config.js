@@ -15,13 +15,13 @@ module.exports = {
         montserrat: ['var(--font-montserrat)', ...fontFamily.sans],
       },
       backgroundImage: {
-        'primary-gradient': 'linear-gradient(180.96deg, #C3ACD0, #5D3891)',
+        'primary-gradient': '',
       },
       colors: {
         primary: {
-          light: '#b298dc',
-          DEFAULT: '#8758c4',
-          dark: '#6028a8',
+          light: 'b298dc',
+          DEFAULT: '8758c4',
+          dark: '6028a8',
         },
       },
     },
