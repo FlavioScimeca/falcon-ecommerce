@@ -11,7 +11,7 @@ const HeroSection = () => {
   const largeScreen = (
     <>
       <div className="flex">
-        <div className="w-28 border-black border-r-[1px]" />
+        <div className="w-28 border-black border-r" />
 
         <div className="flex items-center justify-center text-start space-x-5 flex-1 py-3">
           <div className="w-2/4">
@@ -49,12 +49,12 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="w-28 border-black border-l-[1px]" />
+        <div className="w-28 border-black border-l" />
       </div>
-      <div className="h-20 mt-auto border-black border-t-[1px] border-b-[1px] flex">
-        <div className="w-28 border-black border-r-[1px]" />
+      <div className="h-20 mt-auto border-black border-t border-b flex">
+        <div className="w-28 border-black border-r" />
         <div className="flex-1" />
-        <div className="w-28 border-black border-l-[1px]" />
+        <div className="w-28 border-black border-l" />
       </div>
     </>
   );
@@ -82,18 +82,6 @@ const HeroSection = () => {
               Find Games
             </Link>
           </div>
-        </div>
-
-        <div className={heroSectionClassNames.imageContainer}>
-          <Image
-            src="/images/blackSofa-img-1.jpg"
-            alt=""
-            width={300}
-            height={300}
-            style={{
-              objectFit: 'contain',
-            }}
-          />
         </div>
       </div>
     </>
