@@ -32,7 +32,7 @@ const Carousel = ({ images }: { images: CarouselProps[] }) => {
           alt={images[currentIndex].alt}
           src={images[currentIndex].imageUrl}
           fill
-          className="object-contain"
+          className="object-cover"
         />
         <div className="absolute top-1/2 -right-1" onClick={handleNext}>
           <AiFillCaretRight className="h-9 w-9 cursor-pointer" />

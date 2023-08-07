@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 
+import toast from 'react-hot-toast';
 import { Game } from '@/models/game';
 import { useAppDispatch } from '@/hooks/storeHook';
 import { addItemToCart } from '@/redux/features/cartSlice';
@@ -35,6 +36,19 @@ const GameDetailsClient = (props: { game: Game }) => {
   const handleAddToCart = () => {
     if (!game) return;
     dispatch(addItemToCart({ ...game, quantity }));
+
+    toast.success(`${game.name} added to cart`, {
+      style: {
+        border: '1px solid black',
+        padding: '16px',
+        color: 'black',
+        borderRadius: '0px',
+      },
+      iconTheme: {
+        primary: 'black',
+        secondary: 'white',
+      },
+    });
   };
 
   return (
@@ -60,7 +74,7 @@ const GameDetailsClient = (props: { game: Game }) => {
             </button>
             <input
               type="text"
-              className="border-y w-32 text-center  border-black"
+              className="border-y w-16  md:w-32 text-center  border-black"
               value={quantity}
               readOnly
             />
@@ -94,7 +108,7 @@ const GameDetailsClient = (props: { game: Game }) => {
         </div>
       </div>
 
-      <div className="lg:w-[calc(100dvw-29rem)] text-center lg:ms-28 pt-5">
+      <div className="lg:w-[calc(100dvw-29rem)] px-4 lg:px-0 lg:ms-28 pt-5">
         <h2 className={classNames.description}>{game.description}</h2>
       </div>
     </div>

@@ -61,8 +61,8 @@ const HeroSection = () => {
 
   const smallScreen = (
     <>
-      <div className="flex items-center justify-center text-start space-x-5 flex-1 py-3">
-        <div className="w-2/4">
+      <div className="py-10 flex items-center justify-center text-start space-x-5 flex-1 border-b border-black">
+        <div className="px-5">
           <h1 className="tracking-tight mb-3 text-primary-dark font-bold text-xl md:text-2xl lg:text-3xl text-gray-900">
             Gaming
           </h1>

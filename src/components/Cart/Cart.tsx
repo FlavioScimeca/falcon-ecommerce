@@ -11,6 +11,7 @@ import useCartTotals from '@/hooks/useCartTotals';
 import { getStripe } from '@/libs/loadStripe';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 const Cart: FC = () => {
   const { showCart, cartItems } = useAppSelector((state) => state.cart);
@@ -22,8 +23,22 @@ const Cart: FC = () => {
 
   const { data: session } = useSession();
 
-  const handleRemoveItem = (id: string) =>
+  const handleRemoveItem = (id: string) => {
     dispatch(removeItemFromCart({ _id: id }));
+
+    toast.success('Removed', {
+      style: {
+        border: '1px solid #e2ae10',
+        padding: '16px',
+        color: '#e2ae10',
+        borderRadius: '0px',
+      },
+      iconTheme: {
+        primary: '#e2ae10',
+        secondary: 'white',
+      },
+    });
+  };
 
   const checkoutHandler = async () => {
     const stripe = await getStripe();
