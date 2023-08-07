@@ -1,5 +1,5 @@
 import GameDetailsClient from '@/components/GameDetails/GameDetailsClient';
-import { getGame } from '@/libs/apis';
+import { getGame, getGames } from '@/libs/apis';
 import { Metadata } from 'next';
 
 export async function generateMetadata(props: {
@@ -25,6 +25,14 @@ export async function generateMetadata(props: {
       },
     },
   };
+}
+
+export async function generateStaticParams() {
+  const games = await getGames();
+
+  return games.map((game) => ({
+    slug: game.slug.current,
+  }));
 }
 
 const GametemPage = async (props: { params: { slug: string } }) => {

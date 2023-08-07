@@ -1,6 +1,6 @@
 import GameCard from '@/components/GameCard/GameCard';
 import NewsLetter from '@/components/NewsLetter/NewsLetter';
-import { getCategory, getCategoryGames } from '@/libs/apis';
+import { getCategories, getCategory, getCategoryGames } from '@/libs/apis';
 import { Game } from '@/models/game';
 import { Metadata } from 'next';
 import React from 'react';
@@ -34,6 +34,14 @@ export async function generateMetadata({
       },
     },
   };
+}
+
+export async function generateStaticParams() {
+  const categories = await getCategories();
+
+  return categories.map((category) => ({
+    slug: category.slug.current,
+  }));
 }
 
 const GameCategory = async ({ params: { slug } }: GameCategoryProps) => {
