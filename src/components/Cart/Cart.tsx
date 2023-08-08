@@ -125,9 +125,14 @@ const Cart: FC = () => {
         <span className={classNames.subtotalText}>Subtotal</span>
         <span className={classNames.subtotalPrice}>$ {totalPrice}</span>
       </div>
-      <button onClick={checkoutHandler} className={classNames.checkoutBtn}>
-        Checkout
-      </button>
+      <div className="flex justify-end items-center p-4">
+        <button
+          onClick={checkoutHandler}
+          className="py-2 px-7 bg-black text-white hover:bg-green-600"
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   );
 };
@@ -142,8 +147,7 @@ const classNames = {
   subtotalContainer: 'px-4 py-2 bg-gray-200 flex items-center justify-between',
   subtotalText: 'text-gray-600',
   subtotalPrice: 'font-semibold',
-  checkoutBtn:
-    'w-full py-2 bg-blue-500 text-white rounded mt-4 hover:bg-blue-600',
+  checkoutBtn: 'ms-auto py-2 px-7 bg-black text-white mt-4 hover:bg-green-600',
 };
 
 const cartItemClassNames = {
