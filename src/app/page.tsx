@@ -109,7 +109,7 @@ export default async function Home() {
           Stay Ahead of the Gaming Curve with Our Latest Games.
         </p>
 
-        <div className="flex rounded gap-8 flex-wrap py-10">
+        <div className="flex flex-wrap py-5 gap-3 mb-10">
           {recentGames.map((game) => (
             <GameCard
               key={game._id}
@@ -137,8 +137,7 @@ const sectionClassNames = {
   trendingTitle: 'font-bold text-3xl sm:mr-4',
   trendingButton:
     'mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary hover:bg-primary-dark',
-  latestButton:
-    'mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary-gradient border-2 border-primary-dark',
+  latestButton: 'px-8 py-4 border-2 font-semibold text-2xl',
   featured: 'pb-24 px-6 sm:px-12 md:px-20 lg:px-36  ',
   featuredContent: 'mx-auto',
 };
