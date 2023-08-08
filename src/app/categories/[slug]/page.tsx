@@ -39,6 +39,8 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const categories = await getCategories();
 
+  if (!categories) return [];
+
   return categories.map((category) => ({
     slug: category.slug.current,
   }));

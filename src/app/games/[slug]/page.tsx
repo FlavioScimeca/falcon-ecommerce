@@ -19,9 +19,9 @@ export async function generateMetadata(props: {
     description: game.description,
     category: game.category.name,
     alternates: {
-      canonical: `game/${game.slug.current}`,
+      canonical: `games/${game.slug.current}`,
       languages: {
-        'it-IT': `it-IT/game/${game.slug.current}`,
+        'it-IT': `it-IT/games/${game.slug.current}`,
       },
     },
   };
@@ -29,6 +29,8 @@ export async function generateMetadata(props: {
 
 export async function generateStaticParams() {
   const games = await getGames();
+
+  if (!games) return [];
 
   return games.map((game) => ({
     slug: game.slug.current,
