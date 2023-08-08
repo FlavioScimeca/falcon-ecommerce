@@ -44,7 +44,7 @@ const Header = () => {
           </Link>
           <button
             onClick={() => signOut()}
-            className="bg-red-600 hover:bg-red-500 header-btn"
+            className="bg-red-700 hover:bg-red-600 text-white header-btn"
           >
             Logout
           </button>

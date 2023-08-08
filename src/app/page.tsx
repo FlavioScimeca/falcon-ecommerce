@@ -155,11 +155,11 @@ const styles = {
   categoryHeading:
     'text-center max-w-md sm:max-w-lg md:max-w-2xl mx-auto text-primary font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 leading-[130%,187%,130%,130%]',
   categorySubHeading:
-    'text-center bg-primary-gradient px-8 rounded-3xl py-5 max-w-md sm:max-w-lg md:max-w-2xl mx-auto text-base sm:text-lg md:text-xl lg:text-2xl mb-8',
+    'text-center px-8 py-5 max-w-md sm:max-w-lg md:max-w-2xl mx-auto sm:text-lg md:text-xl lg:text-2xl mb-8',
 };
 
 const recentGamesClasses = {
-  section: 'py-16 lg:py-36 px-4 lg:px-36 text-center',
+  section: 'p-5 md:p-10 text-center',
   heading: 'text-3xl lg:text-4xl font-bold mb-3',
-  subHeading: 'text-gray-400 max-w-xl mx-auto lg:text-lg',
+  subHeading: 'max-w-xl mx-auto lg:text-lg',
 };
