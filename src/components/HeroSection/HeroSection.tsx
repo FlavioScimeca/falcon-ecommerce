@@ -5,7 +5,7 @@ import Image from 'next/image';
 const HeroSection = () => {
   return (
     <>
-      <div className="py-10 lg:py-0 flex border-b border-black">
+      <section className="py-10 lg:py-0 flex border-b border-black">
         <div className="hidden lg:block w-28 border-black border-r" />
 
         <div className="flex items-center justify-center text-start space-x-5 flex-1 py-3">
@@ -21,7 +21,7 @@ const HeroSection = () => {
               magni delectus quam.
             </p>
 
-            <div>
+            <div role="link">
               <Link
                 href="#recent-games"
                 className="mt-8 inline-flex items-center px-6 py-3 text-base rounded-full text-white bg-black"
@@ -40,12 +40,13 @@ const HeroSection = () => {
               style={{
                 objectFit: 'contain',
               }}
+              priority
             />
           </div>
         </div>
 
         <div className="hidden lg:block w-28 border-black border-l" />
-      </div>
+      </section>
       <div className="hidden lg:flex h-20 mt-auto border-black border-t border-b">
         <div className="hidden lg:block w-28 border-black border-r" />
         <div className="hidden lg:block flex-1" />

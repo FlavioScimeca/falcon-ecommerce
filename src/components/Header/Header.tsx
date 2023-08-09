@@ -39,7 +39,11 @@ const Header = () => {
     <>
       {session?.user && (
         <>
-          <Link href="/orders" className="hover:bg-zinc-100 header-btn">
+          <Link
+            role="link"
+            href="/orders"
+            className="hover:bg-zinc-100 header-btn"
+          >
             Orders
           </Link>
           <button
@@ -75,7 +79,7 @@ const Header = () => {
   );
 
   return (
-    <>
+    <nav>
       <Signup isSignupFormOpen={isSignupFormOpen} toggleForm={toggleForm} />
 
       <header className={`border-b-2 border-black flex justify-between h-16`}>
@@ -99,7 +103,7 @@ const Header = () => {
           {buttonsCTA}
         </div>
       </header>
-    </>
+    </nav>
   );
 };
 

@@ -46,5 +46,5 @@ const newsletterSectionClasses = {
     'w-full md:w-1/2 flex flex-col md:flex-row items-center overflow-hidden',
   inputField: 'w-full md:w-3/4 py-3 px-4 text-gray-700',
   button:
-    'bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-200 md:ml-4 mt-4 md:mt-0',
+    'border border-white bg-green-700 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-200 md:ml-4 mt-4 md:mt-0',
 };

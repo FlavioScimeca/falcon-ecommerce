@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
           .collection('users')
           .findOne({ email: credentials.email });
 
-        console.log({ USERR______: user });
+        // console.log({ USERR______: user });
         if (!user) {
           throw new Error('User not registered');
         }

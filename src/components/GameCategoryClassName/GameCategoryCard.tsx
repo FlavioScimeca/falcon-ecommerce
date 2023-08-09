@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import gameCategoryCardClassNames from './gameCategoryClassName';
 import Link from 'next/link';
-import Image from 'next/image';
 import { BiRightArrowAlt } from 'react-icons/bi';
 
 interface GameCategoryCardProps {
@@ -13,12 +12,12 @@ const GameCategoryCard: FC<GameCategoryCardProps> = ({
   categoryName,
   slug,
 }) => {
-  const { name, container, arrow } = gameCategoryCardClassNames;
+  const { name, container } = gameCategoryCardClassNames;
 
   return (
     <Link href={`categories/${slug}`} className={container}>
       <h3 className={name}> {categoryName} </h3>
-      <BiRightArrowAlt className={arrow} />
+      <BiRightArrowAlt className="text-primary-dark h-8 w-8 mx-auto hover:translate-x-3 transition-all ease-in-out" />
     </Link>
   );
 };
