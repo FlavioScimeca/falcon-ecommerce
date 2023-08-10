@@ -1,5 +1,6 @@
 import GameDetailsClient from '@/components/GameDetails/GameDetailsClient';
 import { getGame, getGames } from '@/libs/apis';
+import { getBlurredImages } from '@/libs/getLocalBase64';
 import { Metadata } from 'next';
 
 export async function generateMetadata(props: {
@@ -43,10 +44,11 @@ const GametemPage = async (props: { params: { slug: string } }) => {
   } = props;
 
   const game = await getGame(slug);
+  const blurredImages = await getBlurredImages(game.images);
 
   return (
     <>
-      <GameDetailsClient game={game} />
+      <GameDetailsClient game={game} blurredImages={blurredImages} />
     </>
   );
 };

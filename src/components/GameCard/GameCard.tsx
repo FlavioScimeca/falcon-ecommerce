@@ -24,6 +24,7 @@ const GameCard: FC<GameCardProps> = ({ gameName, imageURL, slug, price }) => {
         className="object-cover top-0 left-0"
         src={imageURL}
         alt={gameName}
+        sizes="(min-width: 780px) 255px, 159px"
         fill
       />
 

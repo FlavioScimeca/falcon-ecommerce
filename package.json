@@ -30,6 +30,7 @@
     "next-auth": "^4.22.3",
     "next-sanity-client": "^1.0.6",
     "nextjs-toploader": "^1.4.2",
+    "plaiceholder": "^3.0.0",
     "postcss": "8.4.26",
     "react": "18.2.0",
     "react-dom": "18.2.0",

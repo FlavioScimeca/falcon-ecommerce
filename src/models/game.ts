@@ -6,6 +6,7 @@ export interface Game {
     _key: string;
     alt: string;
     imageUrl: string;
+    photoBlurredData?: string;
   }>;
   isFeatured: boolean;
   isTrending: boolean;

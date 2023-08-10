@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { AiFillCaretRight, AiFillCaretLeft } from 'react-icons/ai';
 
@@ -10,7 +9,13 @@ interface CarouselProps {
   imageUrl: string;
 }
 
-const Carousel = ({ images }: { images: CarouselProps[] }) => {
+const Carousel = ({
+  images,
+  blurredImages,
+}: {
+  images: CarouselProps[];
+  blurredImages: any[];
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
@@ -33,6 +38,9 @@ const Carousel = ({ images }: { images: CarouselProps[] }) => {
           src={images[currentIndex].imageUrl}
           fill
           className="object-cover"
+          sizes='sizes="(min-width: 1040px) calc(100vw - 465px), 100vw'
+          placeholder="blur"
+          blurDataURL={blurredImages[currentIndex].photoBlurredData.value}
         />
         <div className="absolute top-1/2 -right-1" onClick={handleNext}>
           <AiFillCaretRight className="h-9 w-9 cursor-pointer" />

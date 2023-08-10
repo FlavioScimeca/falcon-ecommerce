@@ -9,8 +9,8 @@ import { useAppDispatch } from '@/hooks/storeHook';
 import { addItemToCart } from '@/redux/features/cartSlice';
 import Carousel from '../Carousel/Carousel';
 
-const GameDetailsClient = (props: { game: Game }) => {
-  const { game } = props;
+const GameDetailsClient = (props: { game: Game; blurredImages: any[] }) => {
+  const { game, blurredImages } = props;
 
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
@@ -53,7 +53,7 @@ const GameDetailsClient = (props: { game: Game }) => {
 
   return (
     <div>
-      <Carousel images={game.images} />
+      <Carousel images={game.images} blurredImages={blurredImages} />
 
       <div className="flex justify-around items-center border-black border-t">
         <div>

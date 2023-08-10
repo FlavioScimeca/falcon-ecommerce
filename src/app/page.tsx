@@ -68,9 +68,7 @@ export default async function Home() {
               </p>
               <Link href={`/games/${isFeaturedGame.slug.current}`}>
                 <Image
-                  src={urlFor(isFeaturedGame.images[0].imageUrl)
-                    .url()
-                    .toString()}
+                  src={isFeaturedGame.images[0].imageUrl}
                   alt={isFeaturedGame.images[0].alt}
                   width={500}
                   height={500}
